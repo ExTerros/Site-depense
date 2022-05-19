@@ -1,0 +1,25 @@
+body {
+    background: rgb(192 192 192);
+    margin: 15px 15px 15px 15px;
+}
+
+#first-part {
+    height: 170px;
+}
+
+.weather {
+    float: right;
+    height: 70%;
+
+}
+#test {}
+
+#second-part {
+    height: 700px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#short-text {
+
+}

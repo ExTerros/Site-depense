@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bonjour{% endblock %}
+
+{% block body %}
+
+    <section class="h-100">
+        <header class="container h-100">
+            <div class="d-flex align-items-center justify-content-center h-100">
+                {% for user in users %}
+                <div><a href="{{ path('user', {id: user.id}) }}"><button class="bn632-hover bn25">{{ user.name }}</button></a></div>
+                {% endfor %}
+            </div>
+        </header>
+    </section>
+{% endblock %}

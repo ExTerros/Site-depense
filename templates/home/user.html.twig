@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="card" id="first-part">
+                <div class="card-body">
+                    <h5 class="card-title"> Bonjour {{ users.name}} !</h5>
+                    <p class="card-text">Nous somme le {{ "now"|format_datetime(locale='fr',pattern="EEEE dd MMMM YYYY") }}, il est {{ "now"|date("h:i", "Europe/Paris") }}.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card" id="first-part">
+                <div class="card-body">
+                    <h5 class="card-title">Dépense Loisir</h5>
+                    <p class="card-text">{{ users.howmuchspend}} / {{ users.maxspend}}</p>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: {{ users.howmuchspend}}%;" aria-valuenow="{{ users.howmuchspend}}" aria-valuemin="0" aria-valuemax="{{ users.maxspend}}">{{ users.howmuchspend}}%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card" id="first-part">
+                <div class="card-body">
+                    <img src="{{ asset('assets/wheather-pic/') }}{{ data.weather.0.icon }}@4x.png" alt="Météo" class="weather">
+                    <h5 class="card-title">Météo du jours</h5>
+                    <p class="card-text" id="test">
+                        à {{ data.name }} | {{ data.weather.0.description }}.
+                        <br>
+                        Température minimale : {{ data.main.temp_min }}°
+                        <br>
+                        Température maximale : {{ data.main.temp_max }}°
+                        <br>
+                        Humidité : {{ data.main.humidity }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="card" id="second-part">
+                <div class="card-body">
+                    <h5 class="card-title">Mes Dépenses</h5>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sit amet purus fringilla, condimentum mauris sed, luctus nunc. Proin urna arcu, dapibus gravida aliquam ut, viverra vitae purus. Suspendisse eget imperdiet elit, nec efficitur massa. Aliquam iaculis feugiat lorem, sed ultricies felis mollis sit amet. Pellentesque orci sapien, interdum vitae vehicula vel, pellentesque vel lectus. Nullam nisi leo, ullamcorper vel risus id, fringilla euismod felis. Curabitur mollis dui neque, nec rutrum odio maximus nec. Etiam cursus feugiat vulputate. Etiam ullamcorper vel ante ullamcorper pretium. Mauris ante nunc, bibendum at tellus nec, tincidunt tempus odio. Ut at auctor tortor. Vivamus posuere, nibh quis hendrerit dignissim, ex sem finibus risus, eu convallis justo velit nec nisl. Vivamus non fringilla massa. Vestibulum viverra id tortor at sodales. Ut in odio at mauris facilisis faucibus.
+
+                        Proin dolor sapien, pellentesque non lacus posuere, feugiat pulvinar risus. Ut quis viverra enim, vel placerat risus. Integer nulla ipsum, tristique ut mollis facilisis, suscipit sit amet justo. Vestibulum ac odio placerat, feugiat nibh vitae, ornare purus. Donec lacinia eget enim accumsan vestibulum. Aenean non urna vehicula, fermentum sem ac, tincidunt nisi. Mauris auctor mollis nulla sit amet pellentesque. Nunc consectetur neque nulla, et tempus arcu auctor maximus. Fusce rhoncus mauris nec faucibus ultricies. Nam gravida elit mauris, non luctus tortor maximus sit amet. Donec pellentesque ante non felis luctus egestas. Nullam odio nisl, efficitur in cursus ut, laoreet non quam. Proin nec sem mi.
+
+                        Integer gravida ante in libero lobortis ultrices. Nunc bibendum faucibus dui, in congue massa vulputate sed. Duis ut eros ut nisl congue lobortis. Nunc eget congue ipsum, et molestie sapien. Fusce ultrices enim ex, sed sagittis odio luctus at. Aenean fringilla ligula nec dui mollis interdum. Nulla eu ex rutrum, ullamcorper felis sed, blandit purus. Nullam elementum eu risus at placerat. Nunc rhoncus pharetra quam, ut finibus ante. Donec nec rhoncus quam, ac iaculis purus. Ut sit amet scelerisque odio. Aenean a dui euismod, varius orci at, elementum dui. Duis eget vestibulum tellus, id semper neque. Duis bibendum turpis purus, non commodo arcu commodo eu.
+
+                        Praesent et augue ac augue mattis blandit vel a elit. Sed lorem est, elementum et molestie vel, facilisis sed ipsum. In mollis lacus est, consequat euismod velit lobortis et. Sed luctus mi eros, ut commodo ipsum pretium quis. Aliquam pellentesque, diam ut egestas fringilla, justo est dignissim diam, et elementum sem arcu a massa. In scelerisque ex id enim luctus malesuada. Maecenas luctus ligula quis lectus egestas, vel iaculis nisl rhoncus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nisi ipsum, eleifend vitae egestas eget, pellentesque quis purus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras eget gravida purus. Fusce sit amet felis in elit molestie posuere. Mauris vel sodales ligula. Quisque quis sapien volutpat, facilisis nibh in, efficitur felis. Sed et lacus a ligula vulputate pulvinar.
+
+                        Donec tempus mollis enim sit amet eleifend. Suspendisse tellus nulla, dictum id vulputate a, sollicitudin id tellus. Nam tempus mattis vulputate. Duis fermentum lectus turpis, in tincidunt tellus laoreet sit amet. Nulla eget purus et arcu tincidunt vestibulum. Suspendisse ut elit mauris. Cras sit amet dignissim lorem, eget posuere ante. Maecenas aliquet euismod urna, vel suscipit ante finibus vitae. Aenean urna tellus, tincidunt non massa sed, laoreet feugiat mi. Aliquam congue nunc id orci porttitor, eu facilisis nisi dignissim. Vestibulum ut lacus a justo faucibus posuere quis eu ligula. Morbi consectetur purus sapien. Mauris nec enim urna. Maecenas vestibulum ligula ligula, ut rhoncus ipsum lobortis euismod.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card" id="second-part">
+                <div class="card-body">
+                    <h5 class="card-title">Dépense Commune</h5>
+                    <p class="card-text" id="short-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sit amet purus fringilla, condimentum mauris sed, luctus nunc. Proin urna arcu, dapibus gravida aliquam ut, viverra vitae purus. Suspendisse eget imperdiet elit, nec efficitur massa. Aliquam iaculis feugiat lorem, sed ultricies felis mollis sit amet. Pellentesque orci sapien, interdum vitae vehicula vel, pellentesque vel lectus. Nullam nisi leo, ullamcorper vel risus id, fringilla euismod felis. Curabitur mollis dui neque, nec rutrum odio maximus nec. Etiam cursus feugiat vulputate. Etiam ullamcorper vel ante ullamcorper pretium. Mauris ante nunc, bibendum at tellus nec, tincidunt tempus odio. Ut at auctor tortor. Vivamus posuere, nibh quis hendrerit dignissim, ex sem finibus risus, eu convallis justo velit nec nisl. Vivamus non fringilla massa. Vestibulum viverra id tortor at sodales. Ut in odio at mauris facilisis faucibus.
+
+                        Proin dolor sapien, pellentesque non lacus posuere, feugiat pulvinar risus. Ut quis viverra enim, vel placerat risus. Integer nulla ipsum, tristique ut mollis facilisis, suscipit sit amet justo. Vestibulum ac odio placerat, feugiat nibh vitae, ornare purus. Donec lacinia eget enim accumsan vestibulum. Aenean non urna vehicula, fermentum sem ac, tincidunt nisi. Mauris auctor mollis nulla sit amet pellentesque. Nunc consectetur neque nulla, et tempus arcu auctor maximus. Fusce rhoncus mauris nec faucibus ultricies. Nam gravida elit mauris, non luctus tortor maximus sit amet. Donec pellentesque ante non felis luctus egestas. Nullam odio nisl, efficitur in cursus ut, laoreet non quam. Proin nec sem mi.
+
+                        Integer gravida ante in libero lobortis ultrices. Nunc bibendum faucibus dui, in congue massa vulputate sed. Duis ut eros ut nisl congue lobortis. Nunc eget congue ipsum, et molestie sapien. Fusce ultrices enim ex, sed sagittis odio luctus at. Aenean fringilla ligula nec dui mollis interdum. Nulla eu ex rutrum, ullamcorper felis sed, blandit purus. Nullam elementum eu risus at placerat. Nunc rhoncus pharetra quam, ut finibus ante. Donec nec rhoncus quam, ac iaculis purus. Ut sit amet scelerisque odio. Aenean a dui euismod, varius orci at, elementum dui. Duis eget vestibulum tellus, id semper neque. Duis bibendum turpis purus, non commodo arcu commodo eu.
+
+                        Praesent et augue ac augue mattis blandit vel a elit. Sed lorem est, elementum et molestie vel, facilisis sed ipsum. In mollis lacus est, consequat euismod velit lobortis et. Sed luctus mi eros, ut commodo ipsum pretium quis. Aliquam pellentesque, diam ut egestas fringilla, justo est dignissim diam, et elementum sem arcu a massa. In scelerisque ex id enim luctus malesuada. Maecenas luctus ligula quis lectus egestas, vel iaculis nisl rhoncus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nisi ipsum, eleifend vitae egestas eget, pellentesque quis purus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras eget gravida purus. Fusce sit amet felis in elit molestie posuere. Mauris vel sodales ligula. Quisque quis sapien volutpat, facilisis nibh in, efficitur felis. Sed et lacus a ligula vulputate pulvinar.
+
+                        Donec tempus mollis enim sit amet eleifend. Suspendisse tellus nulla, dictum id vulputate a, sollicitudin id tellus. Nam tempus mattis vulputate. Duis fermentum lectus turpis, in tincidunt tellus laoreet sit amet. Nulla eget purus et arcu tincidunt vestibulum. Suspendisse ut elit mauris. Cras sit amet dignissim lorem, eget posuere ante. Maecenas aliquet euismod urna, vel suscipit ante finibus vitae. Aenean urna tellus, tincidunt non massa sed, laoreet feugiat mi. Aliquam congue nunc id orci porttitor, eu facilisis nisi dignissim. Vestibulum ut lacus a justo faucibus posuere quis eu ligula. Morbi consectetur purus sapien. Mauris nec enim urna. Maecenas vestibulum ligula ligula, ut rhoncus ipsum lobortis euismod.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
