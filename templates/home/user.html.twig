@@ -36,7 +36,7 @@
                         <br>
                         Température maximale : {{ data.main.temp_max }}°
                         <br>
-                        Humidité : {{ data.main.humidity }}
+                        Humidité : {{ data.main.humidity }}%
                     </p>
                 </div>
             </div>
@@ -48,6 +48,24 @@
             <div class="card" id="second-part">
                 <div class="card-body">
                     <h5 class="card-title">Mes Dépenses</h5>
+                    <div style="text-align: center">
+                        <form action="" method="post">
+                            <label for="what">Quoi
+                                <input type="text" placeholder="Pain au chocolat" class="form-control" id="what">
+                            </label>
+                            <label for="howmany"> Combien
+                                <input type="number" placeholder="1.50" class="form-control" id="howmany">
+                            </label>
+                            <label for="when"> Quand
+                                <input type="date" class="form-control" id="when" >
+                            </label>
+                            <label for="hobbie"> Loisir ?
+                                <input type="checkbox" class="form-check-input" id="hobbie">
+                            </label>
+                            <input type="submit" class="btn btn-primary">
+                        </form>
+                    </div>
+
                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sit amet purus fringilla, condimentum mauris sed, luctus nunc. Proin urna arcu, dapibus gravida aliquam ut, viverra vitae purus. Suspendisse eget imperdiet elit, nec efficitur massa. Aliquam iaculis feugiat lorem, sed ultricies felis mollis sit amet. Pellentesque orci sapien, interdum vitae vehicula vel, pellentesque vel lectus. Nullam nisi leo, ullamcorper vel risus id, fringilla euismod felis. Curabitur mollis dui neque, nec rutrum odio maximus nec. Etiam cursus feugiat vulputate. Etiam ullamcorper vel ante ullamcorper pretium. Mauris ante nunc, bibendum at tellus nec, tincidunt tempus odio. Ut at auctor tortor. Vivamus posuere, nibh quis hendrerit dignissim, ex sem finibus risus, eu convallis justo velit nec nisl. Vivamus non fringilla massa. Vestibulum viverra id tortor at sodales. Ut in odio at mauris facilisis faucibus.
 
                         Proin dolor sapien, pellentesque non lacus posuere, feugiat pulvinar risus. Ut quis viverra enim, vel placerat risus. Integer nulla ipsum, tristique ut mollis facilisis, suscipit sit amet justo. Vestibulum ac odio placerat, feugiat nibh vitae, ornare purus. Donec lacinia eget enim accumsan vestibulum. Aenean non urna vehicula, fermentum sem ac, tincidunt nisi. Mauris auctor mollis nulla sit amet pellentesque. Nunc consectetur neque nulla, et tempus arcu auctor maximus. Fusce rhoncus mauris nec faucibus ultricies. Nam gravida elit mauris, non luctus tortor maximus sit amet. Donec pellentesque ante non felis luctus egestas. Nullam odio nisl, efficitur in cursus ut, laoreet non quam. Proin nec sem mi.
