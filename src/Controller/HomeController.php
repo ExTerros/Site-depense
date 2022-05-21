@@ -4,12 +4,17 @@ namespace App\Controller;
 
 
 
+use App\Entity\Purchase;
+use App\Repository\PurchaseRepository;
 use App\Repository\UserRepository;
 use App\Service\CallWeatherApiService;
-use JetBrains\PhpStorm\NoReturn;
+use DateTimeInterface;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 
 class HomeController extends AbstractController
 {
@@ -21,17 +26,59 @@ class HomeController extends AbstractController
         return $this->render('home/index.html.twig', ['users' => $users]);
     }
 
-    #[NoReturn] #[Route('/user/{id}', name: 'user')]
-    public function show(string $id,UserRepository $userRepository, CallWeatherApiService $callWeatherApiService):Response
+    #[Route('/user/{id}', name: 'user', requirements: ['id' => '\d+'])]
+    public function show(string $id, UserRepository $userRepository, CallWeatherApiService $callWeatherApiService, PurchaseRepository $purchaseRepository,):Response
     {
+        $purchaseRepository->findAll();
 
         $user = $userRepository->find($id);
+
+
+
         return $this->render('home/user.html.twig', [
             'users' => $user,
-            'data' => $callWeatherApiService->getWheatherData(),]);
+            'data' => $callWeatherApiService->getWheatherData(),
+            'purchases' => $purchaseRepository->findBy(array("who_id" => $user)),
+            'together_purchases' => $purchaseRepository->findAll(),
+            ]);
 
 
     }
 
+
+    /**
+     * @throws Exception
+     */
+    #[Route('/user/transaction', name: 'user_transaction')]
+    public function newTransaction(PurchaseRepository $purchaseRepository, Request $request):Response
+    {
+
+        dump($_POST);
+
+        if ($request->isMethod("POST")){
+            $qui = $_POST["Qui"];
+            $iden = $_POST["Id"];
+            $quoi = $_POST["Quoi"];
+            $combien = $_POST["Combien"];
+            $quand = $_POST["Quand"];
+            $buytype = $_POST["BuyType"];
+
+            $combien = str_replace(",", ".", $combien);
+            $quand = str_replace("-", " ",$quand);
+
+            $transaction = new Purchase();
+            $transaction->setWho($qui);
+            $transaction->setWhat($quoi);
+            $transaction->setWhoid($iden);
+            $transaction->setHow($combien);
+            $transaction->setDate($quand);
+            $transaction->setType($buytype);
+
+            $purchaseRepository->add($transaction, true);
+
+        }
+        return $this->redirectToRoute('home');
+
+    }
 
 }
