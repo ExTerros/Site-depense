@@ -14,6 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 
 class HomeController extends AbstractController
@@ -38,8 +39,8 @@ class HomeController extends AbstractController
         return $this->render('home/user.html.twig', [
             'users' => $user,
             'data' => $callWeatherApiService->getWheatherData(),
-            'purchases' => $purchaseRepository->findBy(array("who_id" => $user)),
-            'together_purchases' => $purchaseRepository->findAll(),
+            'purchases' => $purchaseRepository->findBy(array("who_id" => $user ),array("id" => "DESC")),
+            'together_purchases' => $purchaseRepository->findBy(array(),array("id" => "DESC")),
             ]);
 
 
@@ -64,7 +65,6 @@ class HomeController extends AbstractController
             $buytype = $_POST["BuyType"];
 
             $combien = str_replace(",", ".", $combien);
-            $quand = str_replace("-", " ",$quand);
 
             $transaction = new Purchase();
             $transaction->setWho($qui);
