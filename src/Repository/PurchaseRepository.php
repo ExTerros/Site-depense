@@ -30,7 +30,7 @@ class PurchaseRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Purchase $entity, bool $flush = false): void
+    public function remove(Purchase $entity, bool $flush = true): void
     {
         $this->getEntityManager()->remove($entity);
 

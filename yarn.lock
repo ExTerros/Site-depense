@@ -2180,7 +2180,7 @@ encodeurl@~1.0.2:
 encore@^0.0.30-beta:
   version "0.0.30-beta"
   resolved "https://registry.yarnpkg.com/encore/-/encore-0.0.30-beta.tgz#ce1a924bec400051fca893fe3610c8c87c99657a"
-  integrity sha1-zhqSS+xAAFH8qJP+NhDIyHyZZXo=
+  integrity sha512-stRMj446hvKOdbnWT+DIlQBvHtThbQF2Vcajqymim4iGnIAyH104ldRu2OVHybehxVG60iw1rM2H+fX+8QIkQg==
   dependencies:
     chokidar "~0.8.0"
     easyioc "~0.1.10"

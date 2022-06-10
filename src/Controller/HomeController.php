@@ -8,13 +8,11 @@ use App\Entity\Purchase;
 use App\Repository\PurchaseRepository;
 use App\Repository\UserRepository;
 use App\Service\CallWeatherApiService;
-use DateTimeInterface;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Validator\Constraints\DateTime;
 
 
 class HomeController extends AbstractController
@@ -33,6 +31,8 @@ class HomeController extends AbstractController
         $purchaseRepository->findAll();
 
         $user = $userRepository->find($id);
+
+
 
 
 
@@ -74,10 +74,13 @@ class HomeController extends AbstractController
             $transaction->setDate($quand);
             $transaction->setType($buytype);
 
+
+
             $purchaseRepository->add($transaction, true);
 
+
         }
-        return $this->redirectToRoute('home');
+        return $this->redirectToRoute('user', ['id' => $iden]);
 
     }
 
