@@ -10,9 +10,13 @@ Symfony
 
 PHP >=8.0.2
 mySQL ou MariaDB
+
 NodeJS
+
 Composer
+
 NPM ou Yarn
+
 
 ### Lancer le projet
 Cloner ce repository
