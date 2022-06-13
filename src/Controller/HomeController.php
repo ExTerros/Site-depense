@@ -8,6 +8,7 @@ use App\Entity\Purchase;
 use App\Repository\PurchaseRepository;
 use App\Repository\UserRepository;
 use App\Service\CallWeatherApiService;
+use Doctrine\Persistence\ManagerRegistry;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,13 +27,29 @@ class HomeController extends AbstractController
     }
 
     #[Route('/user/{id}', name: 'user', requirements: ['id' => '\d+'])]
-    public function show(string $id, UserRepository $userRepository, CallWeatherApiService $callWeatherApiService, PurchaseRepository $purchaseRepository,):Response
+    public function show(string $id,ManagerRegistry $doctrine, UserRepository $userRepository, CallWeatherApiService $callWeatherApiService, PurchaseRepository $purchaseRepository,):Response
     {
         $purchaseRepository->findAll();
 
         $user = $userRepository->find($id);
 
+        $type = 'Loisir';
 
+        $getPurchase = $doctrine->getRepository(Purchase::class);
+        $getValue = $getPurchase->findSumOfLoisirbyid($type);
+
+
+        if($id == '1'){
+            $getUserValue = $getValue[0] ?? null;
+        }else{
+            $getUserValue = $getValue[1] ?? null;
+        }
+
+        if ($getUserValue == NULL){
+            $getUserValue = array(
+                "loisir" => 0.0,
+                "qui" => 0.0,);
+        }
 
 
 
@@ -41,6 +58,7 @@ class HomeController extends AbstractController
             'data' => $callWeatherApiService->getWheatherData(),
             'purchases' => $purchaseRepository->findBy(array("who_id" => $user ),array("id" => "DESC")),
             'together_purchases' => $purchaseRepository->findBy(array(),array("id" => "DESC")),
+            'test' => $getUserValue,
             ]);
 
 

@@ -5,7 +5,7 @@
 
 
     <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-4" >
             <div class="card" id="first-part">
                 <div class="card-body">
                     <h5 class="card-title"> Bonjour {{ users.name }} !</h5>
@@ -17,10 +17,9 @@
             <div class="card" id="first-part">
                 <div class="card-body">
                     <h5 class="card-title">Dépense Loisir</h5>
-                    <p class="card-text">{{ users.howmuchspend }} / {{ users.maxspend }}</p>
-                    <h1>Non Fonctionnel</h1>
+                    <h1 style="text-align: center">{{ test.loisir }}€ / {{ users.maxspend }}€</h1>
                     <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: {{ users.howmuchspend}}%;" aria-valuenow="{{ users.howmuchspend }}" aria-valuemin="0" aria-valuemax="{{ users.maxspend }}">{{ users.howmuchspend }}%</div>
+                        <div class="progress-bar" role="progressbar" style="width: {{ test.loisir }}%;" aria-valuenow="{{ test.loisir }}" aria-valuemin="0" aria-valuemax="100">  {{  (test.loisir * 120) / 100}}%   </div>
                     </div>
                 </div>
             </div>
