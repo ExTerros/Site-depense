@@ -41,15 +41,9 @@ class PurchaseRepository extends ServiceEntityRepository
 
 
 
-    public function findSumOfLoisirbyid($type): array
+    public function findSumOfFirstTypebyid($type): array
     {
 
-/*        $qb = $this->createQueryBuilder('g')
-            ->select("sum(g.how) as loisir, g.who_id as qui")
-            ->where('g.type = :loisir')
-            ->setParameter('type', $type)
-            ->groupBy('g.who_id');
-*/
         $qb = $this->createQueryBuilder('p')
             ->select("sum(p.how) as loisir, p.who_id as qui")
             ->where('p.type = :type')
@@ -60,6 +54,32 @@ class PurchaseRepository extends ServiceEntityRepository
 
         return $query->execute();
 
+    }
+
+    public function findSumOfSecondTypebyid($type): array
+    {
+
+        $qb = $this->createQueryBuilder('p')
+            ->select("sum(p.how) as salaire, p.who_id as qui")
+            ->where('p.type = :type')
+            ->setParameter('type', $type)
+            ->groupBy('p.who_id');
+
+        $query = $qb->getQuery();
+
+        return $query->execute();
+
+    }
+
+    public function findSumOfAll():array
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->select("sum(p.how) total, p.who_id as qui")
+            ->groupBy('p.who_id');
+
+        $query = $qb->getQuery();
+
+        return $query->execute();
     }
 
 //    /**

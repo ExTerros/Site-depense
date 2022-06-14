@@ -10,6 +10,8 @@
                 <div class="card-body">
                     <h5 class="card-title"> Bonjour {{ users.name }} !</h5>
                     <p class="card-text">Nous somme le {{ "now"|format_datetime(locale='fr',pattern="EEEE dd MMMM YYYY") }}, il est {{ "now"|date("h:i", "Europe/Paris") }}.</p>
+                    <h4>Solde du compte :</h4>
+                    <p>{{ ((SumOfSecondType.salaire * 2) - TotalUserValue.total) | number_format(2, '.', ',') }}€</p>
                 </div>
             </div>
         </div>
@@ -17,9 +19,9 @@
             <div class="card" id="first-part">
                 <div class="card-body">
                     <h5 class="card-title">Dépense Loisir</h5>
-                    <h1 style="text-align: center">{{ test.loisir }}€ / {{ users.maxspend }}€</h1>
+                    <h1 style="text-align: center">{{ SumOfFirstType.loisir }}€ / {{ users.maxspend }}€</h1>
                     <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: {{ test.loisir }}%;" aria-valuenow="{{ test.loisir }}" aria-valuemin="0" aria-valuemax="100">  {{  (test.loisir * 120) / 100}}%   </div>
+                        <div class="progress-bar" role="progressbar" style="width: {{ SumOfFirstType.loisir }}%;" aria-valuenow="{{ SumOfFirstType.loisir }}" aria-valuemin="0" aria-valuemax="100">  {{  ((SumOfFirstType.loisir * 100) / users.maxspend) | number_format(2, '.', ',') }}%   </div>
                     </div>
                 </div>
             </div>
@@ -71,8 +73,9 @@
                                     <option value="Logement et charges">Logement et charges</option>
                                     <option value="Facture">Facture</option>
                                     <option value="Courses">Courses</option>
-                                    <option value="Loisir">Loisir</option>
                                     <option value="Abonnement">Abonnement</option>
+                                    <option value="Loisir">Loisir</option>
+                                    <option value="Salaire">Salaire</option>
                                 </select>
                             </label>
                             <button type="submit" class="btn btn-primary" >Je Valide</button>

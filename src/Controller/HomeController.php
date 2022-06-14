@@ -33,21 +33,41 @@ class HomeController extends AbstractController
 
         $user = $userRepository->find($id);
 
-        $type = 'Loisir';
+        $firstType = 'Loisir';
+        $secondType = 'Salaire';
+
 
         $getPurchase = $doctrine->getRepository(Purchase::class);
-        $getValue = $getPurchase->findSumOfLoisirbyid($type);
+        $getFirstValue = $getPurchase->findSumOfFirstTypebyid($firstType);
+        $getSecondValue = $getPurchase->findSumOfSecondTypebyid($secondType);
 
+        $totalValue = $getPurchase->findSumOfAll();
 
         if($id == '1'){
-            $getUserValue = $getValue[0] ?? null;
+            $getFirstUserValue = $getFirstValue[0] ?? null;
+            $getSecondUserValue = $getSecondValue[0] ?? null;
+            $getTotalUserValue = $totalValue[0] ?? null;
         }else{
-            $getUserValue = $getValue[1] ?? null;
+            $getFirstUserValue = $getFirstValue[1] ?? null;
+            $getSecondUserValue = $getSecondValue[1] ?? null;
+            $getTotalUserValue = $totalValue[1] ?? null;
         }
 
-        if ($getUserValue == NULL){
-            $getUserValue = array(
+        if ($getFirstUserValue == NULL){
+            $getFirstUserValue = array(
                 "loisir" => 0.0,
+                "qui" => 0.0,);
+        }
+
+        if ($getSecondUserValue == NULL){
+            $getSecondUserValue = array(
+                "salaire" => 0.0,
+                "qui" => 0.0,);
+        }
+
+        if ($getTotalUserValue == NULL){
+            $getTotalUserValue = array(
+                "total" => 0.0,
                 "qui" => 0.0,);
         }
 
@@ -58,7 +78,9 @@ class HomeController extends AbstractController
             'data' => $callWeatherApiService->getWheatherData(),
             'purchases' => $purchaseRepository->findBy(array("who_id" => $user ),array("id" => "DESC")),
             'together_purchases' => $purchaseRepository->findBy(array(),array("id" => "DESC")),
-            'test' => $getUserValue,
+            'SumOfFirstType' => $getFirstUserValue,
+            'SumOfSecondType' => $getSecondUserValue,
+            'TotalUserValue' => $getTotalUserValue,
             ]);
 
 
