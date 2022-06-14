@@ -41,7 +41,10 @@ class HomeController extends AbstractController
         $getFirstValue = $getPurchase->findSumOfFirstTypebyid($firstType);
         $getSecondValue = $getPurchase->findSumOfSecondTypebyid($secondType);
 
+
         $totalValue = $getPurchase->findSumOfAll();
+
+
 
         if($id == '1'){
             $getFirstUserValue = $getFirstValue[0] ?? null;

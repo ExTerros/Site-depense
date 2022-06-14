@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Purchase;
+use DateTimeImmutable;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -40,7 +41,7 @@ class PurchaseRepository extends ServiceEntityRepository
     }
 
 
-
+    //Loisir
     public function findSumOfFirstTypebyid($type): array
     {
 
@@ -56,6 +57,7 @@ class PurchaseRepository extends ServiceEntityRepository
 
     }
 
+    //Salaire
     public function findSumOfSecondTypebyid($type): array
     {
 

@@ -21,7 +21,7 @@
                     <h5 class="card-title">Dépense Loisir</h5>
                     <h1 style="text-align: center">{{ SumOfFirstType.loisir }}€ / {{ users.maxspend }}€</h1>
                     <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: {{ SumOfFirstType.loisir }}%;" aria-valuenow="{{ SumOfFirstType.loisir }}" aria-valuemin="0" aria-valuemax="100">  {{  ((SumOfFirstType.loisir * 100) / users.maxspend) | number_format(2, '.', ',') }}%   </div>
+                        <div class="progress-bar" role="progressbar" style="width: {{  ((SumOfFirstType.loisir * 100) / users.maxspend) | number_format(2, '.', ',') }}%;" aria-valuenow="{{ SumOfFirstType.loisir }}" aria-valuemin="0" aria-valuemax="100">  {{  ((SumOfFirstType.loisir * 100) / users.maxspend) | number_format(2, '.', ',') }}%   </div>
                     </div>
                 </div>
             </div>
