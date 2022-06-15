@@ -129,9 +129,9 @@
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
+                                <th scope="col">Qui</th>
                                 <th scope="col">Quoi</th>
                                 <th scope="col">Prix</th>
-                                <th scope="col">Quand</th>
                                 <th scope="col">Type</th>
                             </tr>
                             </thead>
@@ -139,9 +139,9 @@
                             {% for purchase in together_purchases %}
                                 <tr>
                                     <th scope="row">{{ purchase.id }}</th>
+                                    <td>{{ purchase.who }}</td>
                                     <td>{{ purchase.what }}</td>
                                     <td>{{ purchase.how }}€</td>
-                                    <td>{{ purchase.date }}</td>
                                     <td>{{ purchase.type }}</td>
                                 </tr>
                             {% endfor %}

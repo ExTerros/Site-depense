@@ -35,7 +35,7 @@ class HomeController extends AbstractController
 
         $firstType = 'Loisir';
         $secondType = 'Salaire';
-
+        //TODO : Verifier Salaire quand user avec id 2 avec et id 1 sans
 
         $getPurchase = $doctrine->getRepository(Purchase::class);
         $getFirstValue = $getPurchase->findSumOfFirstTypebyid($firstType);
