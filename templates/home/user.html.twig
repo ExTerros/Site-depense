@@ -11,7 +11,7 @@
                     <h5 class="card-title"> Bonjour {{ users.name }} !</h5>
                     <p class="card-text">Nous somme le {{ "now"|format_datetime(locale='fr',pattern="EEEE dd MMMM YYYY") }}, il est {{ "now"|date("h:i", "Europe/Paris") }}.</p>
                     <h4>Solde du compte :</h4>
-                    <p>{{ ((SumOfSecondType.salaire * 2) - TotalUserValue.total) | number_format(2, '.', ',') }}€</p>
+                    <p>{{ ((SumOfSecondType.salaire * 2) - TotalUserValue.total) | number_format(2, '.', ',')}}€</p>
                 </div>
             </div>
         </div>

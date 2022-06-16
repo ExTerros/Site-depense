@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Entity\Purchase;
-use DateTimeImmutable;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -44,48 +43,76 @@ class PurchaseRepository extends ServiceEntityRepository
 
 
     //loisir par mois
-    public function findSumOfTypeOnMonthById($dateStart, $dateEnd, $type): array
+    public function findSumOfTypeOnMonthById($dateStart, $dateEnd, $type, $user): ?array
     {
         $qb = $this->createQueryBuilder('p')
-            ->select("sum(p.how) as loisir, p.who_id as qui")
+            ->select("sum(p.how) as loisir, p.who_id as id")
             ->where('p.type = :type')
             ->andWhere('p.date > :dateStart')
             ->andWhere('p.date < :dateEnd')
+            ->andWhere('p.who_id = :id')
+            ->setParameter('id', $user->getId())
             ->setParameter('type', $type)
             ->setParameter('dateStart', $dateStart)
             ->setParameter('dateEnd', $dateEnd)
-            ->groupBy('p.who_id');
+            ->groupBy('p.who_id')
+            ->getQuery()
+            ->getArrayResult();
 
-        $query = $qb->getQuery();
 
-        return $query->execute();
+        $datas = $qb;
+
+        if(empty($datas)){
+            return null;
+        }else{
+            return $datas;
+        }
     }
 
     //Salaire
-    public function findSumOfSecondTypebyid($type): array
+    public function findSumOfSecondTypebyid($type, $user): ?array
     {
 
-        $qb = $this->createQueryBuilder('p')
-            ->select("sum(p.how) as salaire, p.who_id as qui")
+       $qb = $this->createQueryBuilder('p')
+            ->select("sum(p.how) as salaire, p.who_id as id")
             ->where('p.type = :type')
+            ->andWhere('p.who_id = :id')
+            ->setParameter('id', $user->getId())
             ->setParameter('type', $type)
-            ->groupBy('p.who_id');
+            ->groupBy('p.who_id')
+            ->getQuery()
+            ->getArrayResult();
 
-        $query = $qb->getQuery();
 
-        return $query->execute();
+        $datas = $qb;
 
+        if(empty($datas)){
+            return null;
+        }else{
+            return $datas;
+        }
     }
 
-    public function findSumOfAll():array
+
+    //Total
+    public function findSumOfAll($user): ?array
     {
         $qb = $this->createQueryBuilder('p')
-            ->select("sum(p.how) total, p.who_id as qui")
-            ->groupBy('p.who_id');
+            ->select("sum(p.how) total, p.who_id as id")
+            ->Where('p.who_id = :id')
+            ->setParameter('id', $user->getId())
+            ->groupBy('p.who_id')
+            ->getQuery()
+            ->getArrayResult();
 
-        $query = $qb->getQuery();
 
-        return $query->execute();
+        $datas = $qb;
+
+        if(empty($datas)){
+            return null;
+        }else{
+            return $datas;
+        }
     }
 
 //    /**
