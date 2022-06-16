@@ -24,6 +24,7 @@ Cloner ce repository
 
 Installer les dépendances via Composer et NPM ou YARN
 > composer install
+
 > npm install
 
 
