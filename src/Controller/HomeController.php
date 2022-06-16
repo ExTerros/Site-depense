@@ -33,12 +33,14 @@ class HomeController extends AbstractController
 
         $user = $userRepository->find($id);
 
+        $dateStart = date('Y-m-01');
+        $dateEnd = date('Y-m-t');
         $firstType = 'Loisir';
         $secondType = 'Salaire';
-        //TODO : Verifier Salaire quand user avec id 2 avec et id 1 sans
+        //TODO : Verifier Salaire quand user avec id 2 avec et id 1 sans, UPDATE Faire en sorte que le array existe dans tout les cas si il es vide
 
         $getPurchase = $doctrine->getRepository(Purchase::class);
-        $getFirstValue = $getPurchase->findSumOfFirstTypebyid($firstType);
+        $getFirstValue = $getPurchase->findSumOfTypeOnMonthById($dateStart, $dateEnd, $firstType);
         $getSecondValue = $getPurchase->findSumOfSecondTypebyid($secondType);
 
 
@@ -79,8 +81,8 @@ class HomeController extends AbstractController
         return $this->render('home/user.html.twig', [
             'users' => $user,
             'data' => $callWeatherApiService->getWheatherData(),
-            'purchases' => $purchaseRepository->findBy(array("who_id" => $user ),array("id" => "DESC")),
-            'together_purchases' => $purchaseRepository->findBy(array(),array("id" => "DESC")),
+            'purchases' => $purchaseRepository->findBy(array("who_id" => $user ),array("date" => "DESC")),
+            'together_purchases' => $purchaseRepository->findBy(array(),array("date" => "DESC")),
             'SumOfFirstType' => $getFirstUserValue,
             'SumOfSecondType' => $getSecondUserValue,
             'TotalUserValue' => $getTotalUserValue,

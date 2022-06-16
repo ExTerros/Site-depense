@@ -41,20 +41,24 @@ class PurchaseRepository extends ServiceEntityRepository
     }
 
 
-    //Loisir
-    public function findSumOfFirstTypebyid($type): array
-    {
 
+
+    //loisir par mois
+    public function findSumOfTypeOnMonthById($dateStart, $dateEnd, $type): array
+    {
         $qb = $this->createQueryBuilder('p')
             ->select("sum(p.how) as loisir, p.who_id as qui")
             ->where('p.type = :type')
+            ->andWhere('p.date > :dateStart')
+            ->andWhere('p.date < :dateEnd')
             ->setParameter('type', $type)
+            ->setParameter('dateStart', $dateStart)
+            ->setParameter('dateEnd', $dateEnd)
             ->groupBy('p.who_id');
 
         $query = $qb->getQuery();
 
         return $query->execute();
-
     }
 
     //Salaire
