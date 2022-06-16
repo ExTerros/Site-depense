@@ -56,10 +56,11 @@ class HomeController extends AbstractController
 
 
         $getPurchase = $doctrine->getRepository(Purchase::class);
-        $getFirstValue = $getPurchase->findSumOfTypeOnMonthById($dateStart, $dateEnd, $firstType, $user)[0];
-        $getSecondValue = $getPurchase->findSumOfSecondTypebyid($secondeType, $user)[0];
 
-        $totalValue = $getPurchase->findSumOfAll($user)[0];
+        $getFirstValue = $getPurchase->findSumOfTypeOnMonthById($dateStart, $dateEnd, $firstType, $user);
+        $getSecondValue = $getPurchase->findSumOfSecondTypebyid($secondeType, $user);
+        $totalValue = $getPurchase->findSumOfAll($user);
+
 
 
 

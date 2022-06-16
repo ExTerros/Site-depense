@@ -54,7 +54,6 @@
       <path value="$PROJECT_DIR$/vendor/symfony/debug-bundle" />
       <path value="$PROJECT_DIR$/vendor/symfony/mime" />
       <path value="$PROJECT_DIR$/vendor/symfony/mailer" />
-      <path value="$PROJECT_DIR$/vendor/symfony/security-http" />
       <path value="$PROJECT_DIR$/vendor/symfony/config" />
       <path value="$PROJECT_DIR$/vendor/symfony/dependency-injection" />
       <path value="$PROJECT_DIR$/vendor/symfony/doctrine-bridge" />
@@ -80,7 +79,6 @@
       <path value="$PROJECT_DIR$/vendor/symfony/options-resolver" />
       <path value="$PROJECT_DIR$/vendor/symfony/flex" />
       <path value="$PROJECT_DIR$/vendor/symfony/password-hasher" />
-      <path value="$PROJECT_DIR$/vendor/symfony/security-csrf" />
       <path value="$PROJECT_DIR$/vendor/symfony/stopwatch" />
       <path value="$PROJECT_DIR$/vendor/symfony/proxy-manager-bridge" />
       <path value="$PROJECT_DIR$/vendor/symfony/event-dispatcher-contracts" />
@@ -103,6 +101,8 @@
       <path value="$PROJECT_DIR$/vendor/nikic/php-parser" />
       <path value="$PROJECT_DIR$/vendor/twig/intl-extra" />
       <path value="$PROJECT_DIR$/vendor/symfony/console" />
+      <path value="$PROJECT_DIR$/vendor/symfony/security-csrf" />
+      <path value="$PROJECT_DIR$/vendor/symfony/security-http" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0" />
