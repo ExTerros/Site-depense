@@ -51,16 +51,12 @@ class HomeController extends AbstractController
         $secondeType = 'Salaire';
 
 
-        //TODO : Verifier Salaire quand user avec id 2 avec et id 1 sans, UPDATE Faire en sorte que le array existe dans tout les cas si il es vide
-
-
 
         $getPurchase = $doctrine->getRepository(Purchase::class);
 
         $getFirstValue = $getPurchase->findSumOfTypeOnMonthById($dateStart, $dateEnd, $firstType, $user);
         $getSecondValue = $getPurchase->findSumOfSecondTypebyid($secondeType, $user);
         $totalValue = $getPurchase->findSumOfAll($user);
-
 
 
 
