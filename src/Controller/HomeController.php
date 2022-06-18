@@ -51,14 +51,11 @@ class HomeController extends AbstractController
         $secondeType = 'Salaire';
 
 
-
         $getPurchase = $doctrine->getRepository(Purchase::class);
 
         $getFirstValue = $getPurchase->findSumOfTypeOnMonthById($dateStart, $dateEnd, $firstType, $user);
         $getSecondValue = $getPurchase->findSumOfSecondTypebyid($secondeType, $user);
         $totalValue = $getPurchase->findSumOfAll($user);
-
-
 
 
         return $this->render('home/user.html.twig', [

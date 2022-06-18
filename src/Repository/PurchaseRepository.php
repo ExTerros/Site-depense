@@ -93,8 +93,6 @@ class PurchaseRepository extends ServiceEntityRepository
 
 
     //Total
-
-
     public function findSumOfAll($user): ?array
     {
 
