@@ -15,8 +15,11 @@
 }
 
 @media (min-width: 576px) and (max-width: 1199.98px) {
-    #first-part {
-        margin: 0 0 15px 0;
+    #margin-test {
+        margin: 15px 0 15px 0;
+    }
+    #margin-bottom-test {
+        margin-bottom: 15px;
     }
     #second-part {
         height: 350px;
