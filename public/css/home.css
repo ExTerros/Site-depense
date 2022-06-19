@@ -14,20 +14,6 @@ body {
     text-align: center;
 }
 
-.container div > p span {
-    color: red;
-}
-
-p {
-    position: relative;
-    top: 30px;
-}
-
-p a {
-    color: black;
-    text-decoration: none;
-}
-
 button {
     cursor: pointer;
     border: 0;
