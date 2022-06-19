@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    background-color: rgba(250, 250, 250)
+    background-color: #E6E5ED
 }
 
 .container {
@@ -40,11 +40,11 @@ button:hover {
 
 
 
-@media (min-width: 576px) and (max-width: 1199.98px) {
+@media only screen and (max-width: 768px) {
     button {
-        width: 550px;
-        height: 330px;
+        width: 250px;
+        height: 250px;
         margin: 15px 0 15px 0;
-        font-size: 100px;
+        font-size: 50px;
     }
 }

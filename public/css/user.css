@@ -2,39 +2,18 @@ body {
     background-color: #E6E5ED;
 }
 
-#first-part {
-    height: 170px;
+#fist-section {
+    height: 150px;
 }
 
-.weather {
-    float: right;
-    height: 70%;
-}
-
-#second-part {
-    height: 700px;
+#second-section {
+    height: 650px;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-@media (min-width: 576px) and (max-width: 1199.98px) {
-    #margin-test {
-        margin: 15px 0 15px 0;
-    }
-    #margin-bottom-test {
-        margin-bottom: 15px;
-    }
-    #second-part {
-        height: 350px;
-    }
-    p {
-        font-size:18px;
-    }
-    p, h1, h2, h3,
-    h4, h6 {
-        text-align: center;
-    }
-
+#card-margin {
+    margin: 0 20px 0 20px;
 }
 
 
