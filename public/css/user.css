@@ -14,9 +14,10 @@
     text-overflow: ellipsis;
 }
 
-
-
 @media (min-width: 576px) and (max-width: 1199.98px) {
+    #first-part {
+        margin: 0 0 15px 0;
+    }
     #second-part {
         height: 350px;
     }
@@ -27,6 +28,7 @@
     h4, h6 {
         text-align: center;
     }
+
 }
 
 
