@@ -76,7 +76,7 @@
                         <div class="col">
                             <div class="col-auto text-center ps-2">
                                 <br>
-                                <div class="fs-4 fw-normal font-sans-serif text-primary mb-1 lh-1">{{ SumOfFirstType.0.loisir }}€ / {{ users.maxspend }}€</div>
+                                <div class="fs-4 fw-normal font-sans-serif text-primary mb-1 lh-1">{{ SumOfFirstType.0.loisir + 0 }}€ / {{ users.maxspend }}€</div>
                                 <div class="progress">
                                     <div class="progress-bar" role="progressbar" style="width: {{  ((SumOfFirstType.0.loisir * 100) / users.maxspend) | number_format(2, '.', ',') }}%;" aria-valuenow="{{ SumOfFirstType.0.loisir }}" aria-valuemin="0" aria-valuemax="100">  {{  ((SumOfFirstType.0.loisir * 100) / users.maxspend) | number_format(2, '.', ',') }}%   </div>
                                 </div>
