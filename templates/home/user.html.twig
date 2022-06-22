@@ -45,10 +45,10 @@
                     <h6>Solde du compte</h6>
                 </div>
                 <div class="card-body pt-2">
-                    <div class="row g-0 h100 align-tiems-center">
+                    <div class="row">
                         <div class="col">
-                            <div class="d-flex align-items-center">
-                                <div class="fs--2 fw-semi-bold">
+                            <div class="d-flex">
+                                <div>
                                     <br>
                                     <div>A la date du</div>
                                     {{ "now"|format_datetime(locale='fr',pattern="dd MMMM YYYY") }}
@@ -69,14 +69,14 @@
         <div class="col-md-6 col-xxl-3">
             <div class="card" id="fist-section">
                 <div class="card-header d-flex flex-between-center pb-0">
-                    <h6>Dépense Loisir</h6>
+                    <h6>Dépenses Loisir</h6>
                 </div>
                 <div class="card-body pt-2">
-                    <div class="row g-0 h100 align-tiems-center">
+                    <div class="row">
                         <div class="col">
                             <div class="col-auto text-center ps-2">
                                 <br>
-                                <div class="fs-4 fw-normal font-sans-serif text-primary mb-1 lh-1">{{ SumOfFirstType.0.loisir }}€ / {{ users.maxspend }}€</div>
+                                <div class="fs-4 fw-normal font-sans-serif text-primary mb-1 lh-1">{{ SumOfFirstType.0.loisir | number_format(2, '.', ',') }}€ / {{ users.maxspend }}€</div>
                                 <div class="progress">
                                     <div class="progress-bar" role="progressbar" style="width: {{  ((SumOfFirstType.0.loisir * 100) / users.maxspend) | number_format(2, '.', ',') }}%;" aria-valuenow="{{ SumOfFirstType.0.loisir }}" aria-valuemin="0" aria-valuemax="100">  {{  ((SumOfFirstType.0.loisir * 100) / users.maxspend) | number_format(2, '.', ',') }}%   </div>
                                 </div>
@@ -91,14 +91,20 @@
         <div class="col-md-6 col-xxl-3">
             <div class="card" id="fist-section">
                 <div class="card-header d-flex flex-between-center pb-0">
-                    <h6>Je sais pas encore</h6>
+                    <h6>Gestion dépense</h6>
                 </div>
                 <div class="card-body pt-2">
-                    <div class="row g-0 h100 align-tiems-center">
                         <div class="text-center">
-                            <div class="fs-4 fw-normal font-sans-serif text-primary mb-1 lh-1">CC</div>
+                            <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#AjouterDepense">
+                                Ajouter une dépense
+                            </button>
                         </div>
-                    </div>
+                    <br>
+                    <div class="text-center">
+                            <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#DepenseLoisir">
+                                Modifier la somme dépense loisir max
+                            </button>
+                        </div>
                 </div>
             </div>
         </div>
@@ -107,13 +113,13 @@
         <div class="col-md-6 col-xxl-3">
             <div class="card" id="fist-section">
                 <div class="card-header d-flex flex-between-center pb-0">
-                    <h6 class="card-title">Méteo du jour</h6>
+                    <h6 class="card-title">Météo du jour</h6>
                 </div>
                 <div class="card-body pt-2">
                     <div class="row g-0 h-100 align-items-center">
                         <div class="col">
                             <div class="d-flex align-items-center">
-                                <img class="me-3" src="{{ asset('assets/wheather-pic/') }}{{ data.weather.0.icon }}@4x.png" alt="Méteo" height="60">
+                                <img class="me-3" src="{{ asset('assets/wheather-pic/') }}{{ data.weather.0.icon }}@4x.png" alt="Méteo" height="100">
                                 <div>
                                     <h6 class="mb-2">Rouen</h6>
                                     <div class="fs--2 fw-semi-bold">
@@ -125,74 +131,39 @@
                             </div>
                         </div>
                         <div class="col-auto text-center ps-2">
-                            <div class="fs-4 fw-normal font-sans-serif text-primary mb-1 lh-1">{{ data.main.temp }}°</div>
-                            <div class="fs--1 text-800">{{ data.main.temp_min }}° / {{ data.main.temp_max }}°</div>
+                            <div class="fs-4 fw-normal font-sans-serif text-primary mb-1 lh-1">{{ data.main.temp| number_format(0) }}°</div>
+                            <div class="fs--1 text-800">{{ data.main.temp_min| number_format(0) }}° / {{ data.main.temp_max| number_format(0) }}°</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-
-
-
-
     </div>
+
     <!--    DEUXIÈME SECTION DE CARD    -->
     <div class="row g-3 mb-3" id="card-margin">
-        <!--   dépense personelle    -->
+        <!--   dépense personnelle    -->
         <div class="col-lg-8">
             <div class="card" id="second-section">
                 <div class="card-header d-flex flex-between-center pb-0">
                     <h6 class="card-title">Mes Dépenses</h6>
                 </div>
-                <div class="text-center">
-                    <form action="{{ path('user_transaction')}}" method="post">
-                        <label for="">
-                            <input type="hidden" name="Qui" value="{{ users.name }}">
-                        </label>
-                        <label for="">
-                            <input type="hidden" name="Id" value="{{ users.id }}">
-                        </label>
-                        <label for="what">Quoi
-                            <input type="text" placeholder="Pain au chocolat" class="form-control" id="what" required="required" name="Quoi">
-                        </label>
-                        <label for="how-many"> Combien
-                            <input type="number" placeholder="1.50€" class="form-control" id="how-many" required="required" step="0.01" name="Combien">
-                        </label>
-                        <label for="when"> Quand
-                            <input type="date" class="form-control" id="when" required="required" name="Quand">
-                        </label>
-                        <label for="buy-type"> Type d'achat
-                            <select class="form-select" aria-label="Default select example" id="buy-type" required="required" name="BuyType">
-                                <option selected disabled value>Choisir</option>
-                                <option value="Logement et charges">Logement et charges</option>
-                                <option value="Facture">Facture</option>
-                                <option value="Courses">Courses</option>
-                                <option value="Abonnement">Abonnement</option>
-                                <option value="Loisir">Loisir</option>
-                                <option value="Salaire">Salaire</option>
-                            </select>
-                        </label>
-                        <button type="submit" class="btn btn-primary" >Je Valide</button>
-                    </form>
-                </div>
+
                 {% if purchases is defined and purchases is not empty %}
                     <table class="table text-center">
                         <thead>
                         <tr>
-                            <th scope="col">#</th>
                             <th scope="col">Quoi</th>
                             <th scope="col">Prix</th>
                             <th scope="col">Quand</th>
                             <th scope="col">Type</th>
-                            <th scope="col"></th>
+                            <th scope="col">Action</th>
                         </tr>
                         </thead>
                         <tbody>
                         {% for purchase in purchases %}
                             <tr>
-                                <th scope="row">{{ purchase.id }}</th>
                                 <td>{{ purchase.what }}</td>
                                 <td>{{ purchase.how }}€</td>
                                 <td>{{ purchase.date }}</td>
@@ -212,7 +183,7 @@
                         </tbody>
                     </table>
                 {% else%}
-                    <p>Pas D'achat effectué</p>
+                    <p class="text-center text-danger">Pas D'achat effectué</p>
                 {% endif %}
             </div>
         </div>
@@ -221,7 +192,7 @@
         <div class="col-lg-4">
             <div class="card" id="second-section">
                 <div class="card-header d-flex flex-between-center pb-0">
-                    <h6 class="card-title">Dépense Commune</h6>
+                    <h6 class="card-title">Dépenses Commune</h6>
                 </div>
                 {% if together_purchases is defined and together_purchases is not empty %}
                     <table class="table text-center">
@@ -247,12 +218,96 @@
                         </tbody>
                     </table>
                 {% else%}
-                    <p>Pas D'achat effectué</p>
+                    <p class="text-center text-danger">Pas D'achat effectué</p>
                 {% endif %}
             </div>
         </div>
 
 
 
+    </div>
+
+
+
+    <!-- ajouter depense -->
+    <div class="modal fade" id="AjouterDepense"  tabindex="-1" aria-labelledby="AddDepense" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="AddDepense">Quel est la dépense à ajouter ?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ path('user_transaction')}}" method="post" class="text-center">
+                        <label for="">
+                            <input type="hidden" name="Qui" value="{{ users.name }}">
+                        </label>
+                        <label for="">
+                            <input type="hidden" name="Id" value="{{ users.id }}">
+                        </label>
+                        <div class="row">
+                            <div class="col">
+                                <label for="what">Quoi
+                                    <input type="text" placeholder="Pain au chocolat" class="form-control" id="what" required="required" name="Quoi">
+                                </label>
+                            </div>
+                            <div class="col">
+                                <label for="how-many"> Combien
+                                    <input type="number" placeholder="1.50€" class="form-control" id="how-many" required="required" step="0.01" name="Combien">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                        <label for="when"> Quand
+                            <input type="date" class="form-control" id="when" required="required" name="Quand" value="{{ Today }}">
+                        </label>
+                            </div>
+                            <div class="col">
+                        <label for="buy-type"> Type d'achat
+                            <select class="form-select" aria-label="Default select example" id="buy-type" required="required" name="BuyType">
+                                <option selected disabled value>Choisir</option>
+                                <option value="Logement et charges">Logement et charges</option>
+                                <option value="Facture">Facture</option>
+                                <option value="Courses">Courses</option>
+                                <option value="Abonnement">Abonnement</option>
+                                <option value="Loisir">Loisir</option>
+                                <option value="Salaire">Salaire</option>
+                            </select>
+                        </label>
+                            </div>
+                        </div>
+                        <br><br>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-primary" >Je Valide</button>
+                </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modifier somme loisir -->
+    <div class="modal fade" id="DepenseLoisir" tabindex="-1" aria-labelledby="EditDepenseLoisir" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="EditDepenseLoisir">Combien accordez-vous à vos loisirs ?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ path('user_editmaxspend', { 'id': users.id }) }}" method="post" class="text-center">
+                        <label for="user-maxspend" class="mb-3">
+                            <input type="number" name="maxspend" placeholder="{{ users.maxspend }}" class="form-control" id="user-maxspend" required="required" step="0.01">
+                        </label>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                            <button type="submit" class="btn btn-primary" >Je Valide</button>
+                        </div>
+                    </form>
+            </div>
+        </div>
+    </div>
     </div>
 {% endblock %}

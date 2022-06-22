@@ -7,8 +7,8 @@ body {
 }
 
 #second-section {
-    height: 650px;
-    overflow: hidden;
+    height: 680px;
+    overflow: auto;
     text-overflow: ellipsis;
 }
 

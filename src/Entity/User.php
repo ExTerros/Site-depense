@@ -17,9 +17,6 @@ class User
     private $name;
 
     #[ORM\Column(type: 'decimal', precision: 10, scale: '0')]
-    private $howmuchspend;
-
-    #[ORM\Column(type: 'decimal', precision: 10, scale: '0')]
     private $maxspend;
 
     public function getId(): ?int
@@ -35,18 +32,6 @@ class User
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getHowmuchspend(): ?string
-    {
-        return $this->howmuchspend;
-    }
-
-    public function setHowmuchspend(string $howmuchspend): self
-    {
-        $this->howmuchspend = $howmuchspend;
 
         return $this;
     }
