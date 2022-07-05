@@ -31,10 +31,10 @@
                             <a class="nav-link btn disabled" href="#">Page 4</a>
                         </li>
                     </ul>
-                    {% for test in test  %}
+                    {% for Notif in Notif  %}
                         <div class="alert alert-primary d-flex align-items-center" role="alert">
                             <div class="text-center">
-                                La dépense <strong>{{ test.quoi }} de {{ test.combien }}€</strong> à été effectué aujourd'hui
+                                La dépense <strong>{{ Notif.quoi }} de {{ Notif.combien }}€</strong> à été effectué aujourd'hui
                             </div>
                         </div>
                     {% endfor %}
