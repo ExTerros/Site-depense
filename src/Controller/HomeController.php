@@ -58,7 +58,7 @@ class HomeController extends AbstractController
         $getFirstValue = $getPurchase->findSumOfTypeOnMonthById($dateStart, $dateEnd, $firstType, $user);
         $getSecondValue = $getPurchase->findSumOfSecondTypebyid($secondeType, $user);
         $totalValue = $getPurchase->findSumOfAll($user);
-
+        $test = $getPurchase->findSOTD($user, $today);
 
         return $this->render('home/user.html.twig', [
             'users' => $user,
@@ -69,6 +69,7 @@ class HomeController extends AbstractController
             'SumOfSecondType' => $getSecondValue,
             'TotalUserValue' => $totalValue,
             'Today' => $today,
+            'test' => $test,
             ]);
 
 
