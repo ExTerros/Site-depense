@@ -103,9 +103,22 @@ class PurchaseRepository extends ServiceEntityRepository
             ->getQuery()
             ->getArrayResult();
 
-        $datas = $qb;
+        return $qb;
+    }
 
-        return $datas;
+    //Depense du jour
+    public function findSOTD($user, $date): ?array
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->select("p.how combien, p.what quoi, p.who_id as id")
+            ->Where('p.who_id = :id')
+            ->andWhere('p.date = :date')
+            ->setParameter('id', $user)
+            ->setParameter('date', $date)
+            ->getQuery()
+            ->getArrayResult();
+
+        return $qb;
     }
 
 //    /**
